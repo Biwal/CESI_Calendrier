@@ -1,0 +1,9 @@
+<div [formGroup]="parentForm">
+  <p>Salle :</p>
+  <ng-select formControlName="room" [compareWith]="compareFn" bindLabel="name">
+    <ng-option [value]="room" *ngFor="let room of roomsList$ | async">
+      {{ room.getName }}</ng-option
+    >
+  </ng-select>
+</div>
+<div></div>

@@ -1,0 +1,91 @@
+@import '../../../styles';
+
+.dtpicker {
+  opacity: 0;
+  left: 17px;
+  width: 300px;
+  pointer-events: auto;
+  position: absolute;
+  z-index: 101;
+  background: white;
+  -moz-box-shadow: 0px 0px 10px 0px #656565;
+  -webkit-box-shadow: 0px 0px 10px 0px #656565;
+  -o-box-shadow: 0px 0px 10px 0px #656565;
+  box-shadow: 0px 0px 10px 0px #656565;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=10);
+  padding: 25px;
+
+  .fas:hover {
+    cursor: pointer;
+  }
+
+  input {
+    text-align: center;
+    padding: 5px;
+  }
+
+  .switch:hover {
+    cursor: pointer;
+  }
+
+  .year-picker {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    p:hover:not(.chosen) {
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .chosen {
+      border-radius: 2px;
+      background: rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .dp-container {
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p {
+      &.hidden {
+        color: rgba(0, 0, 0, 0.3);
+
+        &.chosen {
+          background: rgba(99, 98, 99);
+        }
+      }
+
+      margin: 0px 0px 5px 0px;
+      &.today {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      &.chosen {
+        background: rgba(255, 67, 70, 0.76);
+      }
+
+      &:hover {
+        &:not(.chosen) {
+          background: rgba(255, 255, 255, 0.3);
+        }
+        cursor: pointer;
+      }
+
+      text-align: center;
+      line-height: $numberSquareWidth;
+      border-radius: 50%;
+      width: $numberSquareWidth;
+      height: $numberSquareWidth;
+    }
+  }
+
+  .time-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

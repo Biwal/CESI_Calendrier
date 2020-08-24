@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="m-3">
+  <app-tab></app-tab>
+</div>
+<div class="container p-5">
+  <div class="row">
+    <div class="col-5 text-center">
+      <app-room-list (selectRoom)="onUpdateForm($event)"></app-room-list>
+    </div>
+
+    <div class="col-2 text-center">
+      <app-btn-gestion-add
+        (resetForm)="onUpdateForm($event)"
+      ></app-btn-gestion-add>
+    </div>
+
+    <div class="col-5">
+      <app-form-room (formCompleted)="displaySuccessAlert($event)" (errorRaised)="displayFailAlert($event)"></app-form-room>
+
+      <div class="mt-2 text-center">
+        <app-btn-gestion-delete
+          (isDeleted)="displaySuccessAlert($event, 'La salle a été supprimée')" (errorRaised)="displayFailAlert($event)"
+        ></app-btn-gestion-delete>
+        <app-alert-form></app-alert-form>
+      </div>
+    </div>
+  </div>
+</div>

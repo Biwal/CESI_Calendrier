@@ -1,0 +1,24 @@
+<div id="owncalendar" *ngIf="resources && events">
+  <div class="oc-table">
+    <div class="oc-thead">
+      <div class="oc-row">
+        <div class="oc-cell" [ngStyle]="{'width.%': 100/(2+resources.length)}" *ngFor="let cellHeader of getCellHeaders()">{{ cellHeader }}</div>
+      </div>
+    </div>
+    <div class="oc-tbody">
+      <div class="oc-row" *ngFor="let cellRow of getCellRows(); let i = index;" [ngStyle]="{'height.px': config.rowHeight, 'max-height.px': config.rowHeight}">
+        <div class="oc-cell" *ngFor="let td of cellRow.getTds()" [ngStyle]="{'height.px': td.isHeaderDay ? td.title !== 'false' ? 2 * config.rowHeight : 0 : config.rowHeight, 'width.%': 100/(2+resources.length)}" [ngClass]="'oc-cell ' +  (td.isHeaderDay ? 'day' : td.isHeader ? 'midday' : '') + (td.isHeaderDay && i%2 == 1 ? ' noborder' : '')">
+          {{ td.isHeader && !td.isHeaderDay ? td.title : null }}
+          <div *ngIf="td.isHeaderDay && i%2 == 0" class="day_container">{{ td.title }}</div>
+            <div class="event" *ngFor="let event of td.events" [draggable]="event.promo" (dragstart)="onDragStart($event, event)" (dragover)="onDragOver()" (drop)="onDropEvent(event)" [ngStyle]="{'height.px': event.height, 'top.px': event.top, 'background': event.color ? event.color : '#e2e2e2', 'width.%': event.hasParent || event.hasChild ? 50 : 100, 'left.%': event.hasParent ? 50 : 0}" (click)="clickEvent(event)">
+              <div class="topdiv"></div>
+              <div class="content">
+                {{ event.private && !showPrivate ? '' : event.name }}
+              </div>
+              <div class="bottom-div"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

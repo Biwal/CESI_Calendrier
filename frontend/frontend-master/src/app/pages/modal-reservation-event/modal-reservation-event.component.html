@@ -1,0 +1,25 @@
+<div class="p-3">
+  <app-navbar-form-reservation
+  *ngIf="!reservation && !event"
+    (isPerso)="onIsPerso($event)"
+    (isReservation)="onIsReservation($event)"
+  ></app-navbar-form-reservation>
+  <app-form-reservation [reservation]="reservation"
+    (formSubmitted)="displaySuccessAlert($event)"
+    (errorRaised)="displayFailAlert($event)"
+    *ngIf="(isReservation && !isPerso && !event) || reservation"
+  ></app-form-reservation>
+  <app-form-event
+    *ngIf="!isReservation && !isPerso"
+    [isPerso]="false"
+    (formSubmitted)="displaySuccessAlert($event)"
+    (errorRaised)="displayFailAlert($event)"
+  ></app-form-event>
+  <app-form-event [reservation]="event"
+    *ngIf="(!isReservation && isPerso) || event"
+    [isPerso]="true"
+    (formSubmitted)="displaySuccessAlert($event)"
+    (errorRaised)="displayFailAlert($event)"
+  ></app-form-event>
+  <app-alert-form></app-alert-form>
+</div>

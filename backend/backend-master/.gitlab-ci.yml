@@ -1,0 +1,41 @@
+#image: docker
+
+stages:
+  - test
+
+cache:
+  paths:
+    - vendor/
+
+postman_test:
+  stage: test
+  image:
+    name: postman/newman_alpine33
+    entrypoint: [""]
+  script:
+    - newman --version
+    - npm install -g newman-reporter-html
+    - touch report.html
+#    ajouter TU Postman puis jouer avec cmd:
+#    - newman run collection.json --reporters cli,html --reporter-html-report report.html
+
+#    - vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never
+  artifacts:
+    paths:
+#      artifact permet de télécharger un rapport d'erreur generé durant le test
+      - report.html
+#  stage: build
+#  script:
+#    - docker pull $CONTAINER_RELEASE_IMAGE || true
+#    - docker build --cache-from $CONTAINER_RELEASE_IMAGE --pull --tag $CONTAINER_TAG_IMAGE .
+#    - docker push $CONTAINER_TAG_IMAGE
+#
+#deploy_staging:
+#  stage: deploy
+#  script:
+#    - echo "Deploy to staging server"
+#  environment:
+#    name: staging
+#    url: https://staging.cesi-scheduler-backend.com
+#  only:
+#    - master

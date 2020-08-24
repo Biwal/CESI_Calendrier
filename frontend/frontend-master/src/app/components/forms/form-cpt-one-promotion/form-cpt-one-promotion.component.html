@@ -1,0 +1,11 @@
+<div [formGroup]="parentForm">
+  <p>Promotion :</p>
+  <ng-select
+    formControlName="promotion"
+    [compareWith]="compareFn"
+    bindLabel="name">
+    <ng-option [value]="promotion" *ngFor="let promotion of promotionsList$ | async">
+      {{ promotion.getName }}
+    </ng-option>
+  </ng-select>
+</div>

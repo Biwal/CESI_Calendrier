@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <ul class="nav nav-pills">
+      <li
+        [ngClass]="{
+          'nav-item': true,
+          active: !perso && reservation
+        }"
+      >
+        <a class="nav-link" (click)="onReservation()">Réservation</a>
+      </li>
+      <li
+        [ngClass]="{
+          'nav-item': true,
+          active: !perso && !reservation
+        }"
+      >
+        <a class="nav-link" (click)="onEvenement()">Evènement</a>
+      </li>
+      <li
+        [ngClass]="{
+          'nav-item': true,
+          active: perso && !reservation
+        }"
+      >
+        <a class="nav-link" (click)="onPersonnel()">Personnel</a>
+      </li>
+    </ul>
+  </div>
+</div>

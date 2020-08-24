@@ -1,0 +1,28 @@
+<div class="container-fluid bg-light">
+  <nav class="row p-3">
+    <img src="assets/images/logo-short.png" width="50" height="50" alt="" />
+    <div class="navbar navbar-expand-lg navbar-light ml-5" >
+      <a class="nav-link"
+         routerLinkActive="active"
+         routerLink="/frontend-day">FrontOffice (Jour)</a>
+      <a class="nav-link"
+         routerLinkActive="active"
+         routerLink="/frontend-week">FrontOffice (Semaine)</a>
+      <a
+        class="nav-link"
+        routerLinkActive="active"
+        routerLink="/auth"
+        *ngIf="!authApiService.isAuthenticated()"
+      >Connexion</a
+      >
+      <a
+        class="nav-link text-danger"
+        routerLinkActive="active"
+        (click)="logout()"
+        routerLink="null"
+        *ngIf="authApiService.isAuthenticated()"
+      >Déconnexion</a
+      >
+    </div>
+  </nav>
+</div>

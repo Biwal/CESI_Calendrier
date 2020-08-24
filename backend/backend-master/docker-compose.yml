@@ -1,0 +1,58 @@
+version: "3.1"
+services:
+    memcached:
+      image: registry.gitlab.com/cesiap18/cesisheduler/backend:memcached
+      container_name: cesi-scheduler-backend-memcached
+      restart: unless-stopped
+
+    mariadb:
+      image: registry.gitlab.com/cesiap18/cesisheduler/backend:mariadb
+      container_name: cesi-scheduler-backend-mariadb
+      restart: unless-stopped
+      working_dir: /application
+      volumes:
+        - .:/application
+      environment:
+        - MYSQL_ROOT_PASSWORD=cesi
+        - MYSQL_DATABASE=cesi_scheduler
+        - MYSQL_USER=cesi
+        - MYSQL_PASSWORD=cesi
+      ports:
+        - "8083:3306"
+
+    nginx:
+      image: registry.gitlab.com/cesiap18/cesisheduler/backend:nginx
+      container_name: cesi-scheduler-backend-nginx
+      restart: unless-stopped
+      working_dir: /application
+      volumes:
+          - .:/application
+          - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      depends_on:
+        - app
+
+    app:
+      user: www-data:www-data
+      image: registry.gitlab.com/cesiap18/cesisheduler/backend:app
+      restart: unless-stopped
+      container_name: cesi-scheduler-backend-app
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./docker/app/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
+
+    angular:
+      container_name: cesi-scheduler-frontend-angular
+      image: registry.gitlab.com/cesiap18/cesisheduler/frontend:v0.2
+      restart: unless-stopped
+
+    proxy:
+      container_name: cesi-scheduler-frontend-reverse-proxy
+      image: nginx:1.17.8
+      restart: unless-stopped
+      volumes:
+        - ./docker/reverse_proxy/reverse_proxy.conf:/etc/nginx/conf.d/default.conf
+      depends_on:
+        - app
+      ports:
+        - "80:80"

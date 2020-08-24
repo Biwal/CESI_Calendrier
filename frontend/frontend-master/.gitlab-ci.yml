@@ -1,0 +1,76 @@
+image: weboaks/node-karma-protractor-chrome
+
+stages:
+  - build
+  - package
+#  - test
+
+services:
+  - docker:stable
+  - gitlab/dind
+
+build:
+  stage: build
+  image: trion/ng-cli
+  cache:
+    paths:
+      - node_modules/
+  before_script:
+    - npm install
+  script:
+    - ng build --prod
+  artifacts:
+    paths:
+      - dist/
+
+package:
+  stage: package
+  image: gitlab/dind
+  script:
+    - cp Dockerfile ./dist/cesi-scheduler-frontend
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t registry.gitlab.com/cesiap18/cesisheduler/frontend:v0.2 ./dist/cesi-scheduler-frontend
+    - docker push registry.gitlab.com/cesiap18/cesisheduler/frontend:v0.2
+  only:
+    refs:
+      - master
+
+#test:karma:
+#  stage: test
+#  image: trion/ng-cli-karma
+#  allow_failure: false
+#  script:
+#    - ng test --code-coverage --progress false --watch false
+#  coverage: '/Lines \W+: (\d+\.\d+)%.*/'
+#  artifacts:
+#    paths:
+#      - coverage/
+#
+#test:e2e:
+#  stage: test
+#  image: trion/ng-cli-e2e
+#  allow_failure: false
+#  script:
+#    - ng e2e
+#
+#test:nglint:
+#  stage: test
+#  image: trion/ng-cli
+#  script:
+#    - ng lint
+
+#test:
+#  stage: test
+#  image: weboaks/node-karma-protractor-chrome
+#  script:
+#    - npm test
+#
+#deploy_staging:
+#  stage: deploy
+#  script:
+#    - echo "Deploy to staging server"
+#  environment:
+#    name: staging
+#    url: https://staging.cesi-scheduler-frontend.com
+#  only:
+#    - master

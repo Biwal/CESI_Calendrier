@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="m-3">
+  <app-tab></app-tab>
+</div>
+<div class="mt-2">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="row justify-content-center align-items-center h-100">
+            <i class="fas fa-angle-left owncalendar-btn left" (click)="lastWeek()"></i>
+            <h5 class="m-0 mr-2 ml-2">{{ getWeekDate() }}</h5>
+            <i class="fas fa-angle-right owncalendar-btn right" (click)="nextWeek()"></i>
+        </div>
+        <div class="ml-4">
+          <button class="owncalendar-btn" (click)="today()">Cette semaine</button>
+        </div>
+        <div class="ml-2">
+          <app-modal></app-modal>
+          <button class="owncalendar-btn" (click)="onModal()">Ajouter une réservation</button>
+        </div>
+    </div>
+  </div>
+    <app-own-calendar-week
+        showPrivate=true
+        [referentDate]="referentDate"
+        [events]="events"
+        [resources]="resources"
+        (showEvent)="onShowEvent($event)"
+        (showModalAction)="onShowModalAction($event)">
+    </app-own-calendar-week>
+</div>

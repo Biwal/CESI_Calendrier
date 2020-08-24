@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="m-3">
+  <app-tab></app-tab>
+</div>
+<div class="row justify-content-center mt-5">
+  <div class="col-lg-5 col-10">
+    <div class="row justify-content-between">
+      <div class="col-5">
+        <app-form-config
+                [config]="config"
+                (formSubmitted)="displaySuccessAlert()" (errorRaised)="displayFailAlert($event)"></app-form-config>
+      </div>
+
+      <div class="col-5">
+        <app-form-password
+                (formSubmitted)="this.alertFormComponent.displayAlert('success', 'Le mot de passe a bien été modifié')" (errorRaised)="displayFailAlert($event)"></app-form-password>
+        <app-alert-form></app-alert-form>
+      </div>
+    </div>
+  </div>
+</div>

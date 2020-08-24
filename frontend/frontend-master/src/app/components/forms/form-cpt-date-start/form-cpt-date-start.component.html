@@ -1,0 +1,10 @@
+<div [formGroup]="parentForm">
+  <p>Début:</p>
+  <input [appOwnDateTime]="dt1" placeholder="Date de début" formControlName="dateStart" value="d"/>
+  <app-own-date-time-picker (closeEvent)="checkPromos()" #dt1></app-own-date-time-picker>
+</div>
+
+
+
+
+

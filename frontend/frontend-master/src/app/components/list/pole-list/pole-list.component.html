@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Pole</th>
+    <th scope="col">Promotions</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="polesList$ | async; else loading">
+    <tr *ngFor="let pole of polesList$ | async; trackBy:trackByPoleId" (click)="onSelectPole(pole)">
+      <td scope="col" class="d-flex justify-content-center align-items-center">
+        <div class="color-show" [ngStyle]="{ 'background-color': pole.getColor }"></div>
+        <div>
+          {{ pole.getName }}
+        </div>
+      </td>
+      <td scope="col">
+        <div class="badge" *ngFor="let promo of pole.getPromotions">{{promo.getName}}</div>
+      </td>
+    </tr>
+  </tbody>
+  <ng-template #loading>
+    <tr>
+      <td colspan="2">
+        <i class="fas fa-spinner"></i>
+      </td>
+    </tr>
+  </ng-template>
+</table>
+
+

@@ -1,0 +1,14 @@
+<img src="assets/images/logo-short.png" width="20" height="20" alt=""  routerLinkActive="active"
+     routerLink="/promopage" />
+<div class="mt-2">
+  <div class="container-fluid m-2">
+    <div class="row justify-content-center">
+        <h6 class="m-0 mr-2 ml-2">{{ getDay() }}</h6>
+    </div>
+  </div>
+  <app-own-calendar-day
+    [referentDate]="referentDate"
+    [events]="events"
+    [resources]="resources">
+  </app-own-calendar-day>
+</div>

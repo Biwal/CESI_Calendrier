@@ -1,0 +1,34 @@
+<div class="dtpicker" *ngIf="opened" #insideDatePickerElement [@openClose]="this.opened ? 'open' : 'closed'" [ngStyle]="{'left': leftX+'px'}">
+  <div class="container-fluid" *ngIf="!this.type || !this.type === 'timepicker'">
+    <div class="row justify-content-center align-items-center">
+      <i class="fas fa-caret-left mr-3 p-2" (click)="previous()"></i>
+      <p class="m-0 switch" (click)="switchPicker()">{{ getDate() }}<i [ngClass]="'fas ' + (this.pickerState === 'datetime' ? 'fa-caret-down' : 'fa-caret-up')"></i></p>
+      <i class="fas fa-caret-right ml-3 p-2" (click)="next()"></i>
+    </div>
+  </div>
+  <div *ngIf="this.pickerState == 'datetime'">
+    <div class="row dp-container" *ngIf="!this.type || !this.type === 'timepicker'">
+      <p *ngFor="let date of getDates()" [ngClass]="'date' + (date.chosen ? ' chosen ' : '') + (date.isToday ? ' today ' : '') + (date.isBefore || date.isAfter ? ' hidden ' : '')" (click)="onClickDate(date)">{{ date.number }}</p>
+    </div>
+    <div class="time-picker">
+      <div class="hour-picker col-3">
+        <div class="d-flex flex-column align-items-center">
+          <i class="fas fa-caret-up p-2" (click)="addHour(1)"></i>
+          <input type="text" value="{{ getHours() }}" (change)="hoursChanged($event)">
+          <i class="fas fa-caret-down p-2" (click)="addHour(-1)"></i>
+        </div>
+      </div>
+      :
+      <div class="minutes-picker col-3">
+        <div class="d-flex flex-column align-items-center">
+          <i class="fas fa-caret-up p-2" (click)="addMinute(1)"></i>
+          <input type="text" value="{{ getMinutes() }}" (change)="minutesChanged($event)">
+          <i class="fas fa-caret-down p-2" (click)="addMinute(-1)"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="this.pickerState == 'year'" class="year-picker row">
+    <p *ngFor="let year of getYears()" (click)="choseYear(year)" [ngClass]="year === this.chosenDate.format('YYYY') ? 'chosen' : ''" class="p-2">{{ year }}</p>
+  </div>
+</div>

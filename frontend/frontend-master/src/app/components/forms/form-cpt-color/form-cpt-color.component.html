@@ -1,0 +1,6 @@
+<div class="colorPicker" [formGroup]="parentForm">
+    <p>{{ this.labelName }}</p>
+    <input type="text" [style.background]="color" [value]="color" [(colorPicker)]="color"
+    (colorPickerChange)="onChangeColor($event)"
+    formControlName="{{ this.inputName }}"/>
+</div>

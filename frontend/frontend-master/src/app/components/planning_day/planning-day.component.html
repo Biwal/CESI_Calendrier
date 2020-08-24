@@ -1,0 +1,17 @@
+<p>Planning du {{ date | date:'dd/mm/yy'  }}</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Salle</th>
+      <th scope="col" *ngFor="let demiHeure of getDemiHeures()">{{ demiHeure.heure }}h</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let room of jsonResponse">
+    <th scope="row">{{ room.name }}</th>
+    <td *ngFor="let plage of getPlages(room)" [attr.colspan]="plage.during" [attr.class]="plage.attribution">{{ plage.attribution }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<button (click)="test()">Test refresh</button>

@@ -1,0 +1,14 @@
+<div class="p-3">
+  <app-form-reservation
+    (formSubmitted)="displaySuccessAlert($event)"
+    (errorRaised)="displayFailAlert($event)"
+    *ngIf="isReservation && !isPerso"
+  ></app-form-reservation>
+  <app-form-event
+    *ngIf="!isReservation && isPerso"
+    [isPerso]="true"
+    (formSubmitted)="displaySuccessAlert($event)"
+    (errorRaised)="displayFailAlert($event)"
+  ></app-form-event>
+  <app-alert-form></app-alert-form>
+</div>

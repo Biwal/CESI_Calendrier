@@ -1,0 +1,37 @@
+<form [formGroup]="configForm" (ngOnSubmit)="onSaveConfig()">
+    <app-form-cpt-color
+            inputName="defaultEventColor"
+            labelName="Couleur par défaut des évenements"
+            [parentForm]="configForm">
+    </app-form-cpt-color>
+    <div
+            *ngIf="configForm.controls.defaultEventColor.invalid && (configForm.controls.defaultEventColor.dirty || configForm.controls.defaultEventColor.touched)"
+            class="alert alert-danger">
+        <div
+                *ngIf="configForm.controls.defaultEventColor.errors.required">
+            Une couleur est nécéssaire.
+        </div>
+        <div
+                *ngIf="configForm.controls.defaultEventColor.errors.pattern">
+            Seul une couleur en hexadécimal, rgb ou rgba est accepté.
+        </div>
+    </div>
+
+    <!--<div [formGroup]="configForm" class="mt-2">
+        <p>Heure de début</p>
+        <input [appOwnDateTime]="dt2" placeholder="Heure de début" formControlName="hourStart"/>
+        <app-own-date-time-picker type="timepicker" #dt2></app-own-date-time-picker>
+    </div>
+
+    <div [formGroup]="configForm" class="mt-2">
+        <p>Heure de fin</p>
+        <input [appOwnDateTime]="dt1" placeholder="Heure de fin" formControlName="hourEnd"/>
+        <app-own-date-time-picker type="timepicker" #dt1></app-own-date-time-picker>
+    </div>-->
+
+    <div class="text-center mt-2">
+        <button type="submit" (click)="onSaveConfig()">
+            Enregistrer les paramètres
+        </button>
+    </div>
+</form>

@@ -1,0 +1,17 @@
+<div class="row hp-100 justify-content-md-center" >
+  <div>
+<button  *ngIf="displayBtn && fusionPossible" class="btn btn-primary " (click)="onFusion()">Fusion
+  <p *ngIf="fusionForce"> La fusion va être forcée</p>
+</button>
+</div>
+<div>
+<button *ngIf="displayBtn" class="btn btn-primary" (click)="onPermutation()">Permutation
+  <p *ngIf="permutationForce"> La permutation va être forcée</p>
+</button>
+</div>
+<div>
+<button *ngIf="displayBtn" class="btn btn-primary "(click)="onCancel()">Annuler</button>
+</div>
+
+<app-alert-form></app-alert-form>
+</div>

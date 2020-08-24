@@ -1,0 +1,39 @@
+<div class="container p-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-7">
+      <form [formGroup]="authForm" (ngOnSubmit)="onLogin()">
+        <app-form-cpt-username [parentForm]="authForm"></app-form-cpt-username>
+        <div
+          *ngIf="authForm.controls.username.invalid && (authForm.controls.username.dirty || authForm.controls.username.touched)"
+          class="alert alert-danger">
+          <div
+            *ngIf="authForm.controls.username.errors.required">
+            Un nom d'utilisateur est nécessaire.
+          </div>
+        </div>
+        <div class="mt-2">
+          <app-form-cpt-password [parentForm]="authForm"></app-form-cpt-password>
+          <div
+            *ngIf="authForm.controls.password.invalid && (authForm.controls.password.dirty || authForm.controls.password.touched)"
+            class="alert alert-danger">
+            <div
+              *ngIf="authForm.controls.password.errors.required">
+              Un mot de passe est nécessaire.
+            </div>
+            <div
+              *ngIf="authForm.controls.login.errors">
+              le mot de passe est mauvais.
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 text-center">
+          <button type="submit" (click)="onLogin()">
+            Connexion
+          </button>
+        </div>
+        <div *ngIf="nolog" class="alert alert-danger mt-3">{{ nolog }}</div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Promotions</th>
+      <th scope="col">Capacité</th>
+      <th scope="col">En Cours</th>
+      <th scope="col">Pôle</th>
+    </tr>
+  </thead>
+
+  <tbody *ngIf="promosList$ | async; else loading">
+    <tr *ngFor="let promo of promosList$ | async ; trackBy:trackByPromotionId" (click)="onSelectPromo(promo)">
+      <td>{{ promo.getName }}</td>
+      <td>{{ promo.getSize }}</td>
+      <td>{{ promo.getActive }}</td>
+      <td>{{ promo.getPole.getName }}</td>
+    </tr>
+  </tbody>
+  <ng-template #loading>
+    <tr>
+      <td colspan="4">
+        <i class="fas fa-spinner"></i>
+      </td>
+    </tr>
+  </ng-template>
+</table>

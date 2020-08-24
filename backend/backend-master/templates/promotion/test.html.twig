@@ -1,0 +1,26 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <p>Test</p>
+        {{ form_start(form) }}
+
+            {{ form_label(form.name) }}
+            <div>
+                <p>Error => </p>
+                {{ dump(form.name) }}
+                {% autoescape false %}
+                    {{ form_errors(form.name)|raw }}
+                {% endautoescape %}
+            </div>
+            {{ form_widget(form.name) }}
+
+        <button>send</button>
+        {{ form_end(form) }}
+    </body>
+
+        {% autoescape false %}
+        {{ test }}
+        {%  endautoescape %}
+</html>

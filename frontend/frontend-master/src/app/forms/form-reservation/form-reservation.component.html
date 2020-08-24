@@ -1,0 +1,61 @@
+<form [formGroup]="reservationForm" (ngOnSubmit)="onSaveReservation()">
+  <app-form-cpt-date-start (changed)="refreshPromosList()"
+    [parentForm]="reservationForm"
+  ></app-form-cpt-date-start>
+  <div
+    *ngIf="reservationForm.controls.dateStart.invalid && (reservationForm.controls.dateStart.dirty || reservationForm.controls.dateStart.touched)"
+    class="alert alert-danger">
+    <div
+      *ngIf="reservationForm.controls.dateStart.errors.required">
+      Une date de début est nécessaire.
+    </div>
+  </div>
+  <div class="mt-2">
+    <app-form-cpt-date-end (changed)="refreshPromosList()" [parentForm]="reservationForm"></app-form-cpt-date-end>
+    <div
+      *ngIf="reservationForm.controls.dateEnd.invalid && (reservationForm.controls.dateEnd.dirty || reservationForm.controls.dateEnd.touched)"
+      class="alert alert-danger">
+      <div
+        *ngIf="reservationForm.controls.dateEnd.errors.required">
+        Une date de fin est nécessaire.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <app-form-cpt-room [parentForm]="reservationForm"></app-form-cpt-room>
+    <div
+      *ngIf="reservationForm.controls.room.invalid && (reservationForm.controls.room.dirty || reservationForm.controls.room.touched)"
+      class="alert alert-danger">
+      <div
+        *ngIf="reservationForm.controls.room.errors.required">
+        Une salle est nécessaire.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <app-form-cpt-one-promotion
+      [parentForm]="reservationForm"
+    ></app-form-cpt-one-promotion>
+    <div
+      *ngIf="reservationForm.controls.promotion.invalid && (reservationForm.controls.promotion.dirty || reservationForm.controls.promotion.touched)"
+      class="alert alert-danger">
+      <div
+        *ngIf="reservationForm.controls.promotion.errors.required">
+        Une promotion est nécessaire.
+      </div>
+    </div>
+  </div>
+  <app-modal-check (doModification)="onModificationChange($event)" ></app-modal-check>
+  <div class="text-center mt-4">
+    <button type="submit" (click)="onSaveReservation()">
+      Enregistrer
+    </button>
+  </div>
+  <div class="text-center mt-2" *ngIf="reservation">
+    <button type="submit" class="btn-danger" (click)="onDeleteEvent()">
+      Supprimer la réservation
+    </button>
+  </div>
+</form>
+
+

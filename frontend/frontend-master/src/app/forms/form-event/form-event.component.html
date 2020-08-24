@@ -1,0 +1,82 @@
+<form [formGroup]="eventForm" (ngOnSubmit)="onSaveEvent()">
+  <app-form-cpt-date-start
+    [parentForm]="eventForm"
+  ></app-form-cpt-date-start>
+  <div
+  *ngIf="eventForm.controls.dateStart.invalid && (eventForm.controls.dateStart.dirty || eventForm.controls.dateStart.touched)"
+  class="alert alert-danger">
+  <div
+    *ngIf="eventForm.controls.dateStart.errors.required">
+    Une date de début est nécessaire.
+  </div>
+</div>
+  <div class="mt-2">
+    <app-form-cpt-date-end [parentForm]="eventForm"></app-form-cpt-date-end>
+    <div
+      *ngIf="eventForm.controls.dateEnd.invalid && (eventForm.controls.dateEnd.dirty || eventForm.controls.dateEnd.touched)"
+      class="alert alert-danger">
+      <div
+        *ngIf="eventForm.controls.dateEnd.errors.required">
+        Une date de fin est nécessaire.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <app-form-cpt-room [parentForm]="eventForm"></app-form-cpt-room>
+    <div
+      *ngIf="eventForm.controls.room.invalid && (eventForm.controls.room.dirty || eventForm.controls.room.touched)"
+      class="alert alert-danger">
+      <div
+        *ngIf="eventForm.controls.room.errors.required">
+        Une salle est nécessaire.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <app-form-cpt-name [parentForm]="eventForm"></app-form-cpt-name >
+    <div
+      *ngIf="eventForm.controls.name.invalid && (eventForm.controls.name.dirty || eventForm.controls.name.touched)"
+      class="alert alert-danger">
+      <div
+        *ngIf="eventForm.controls.name.errors.required">
+        Un nom à l'événement est nécessaire.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <app-form-cpt-capacity [parentForm]="eventForm"></app-form-cpt-capacity>
+    <div
+      *ngIf="eventForm.controls.capacity.invalid && (eventForm.controls.capacity.dirty || eventForm.controls.capacity.touched)"
+      class="alert alert-danger">
+      <div
+        *ngIf="eventForm.controls.capacity.errors.required">
+        Une capacité est nécessaire.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <div class="row">
+      <div class="col-8">
+        <app-form-cpt-color labelName="Couleur" inputName="color" [parentForm]="eventForm"></app-form-cpt-color>
+      </div>
+    </div>
+    <div
+      *ngIf="eventForm.controls.color.invalid && (eventForm.controls.color.dirty || eventForm.controls.color.touched)"
+      class="alert alert-danger">
+      <div
+        *ngIf="eventForm.controls.color.errors.required">
+        Etes vous sur de vouloir rendre cet evenement public.
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-2">
+    <button type="submit" (click)="onSaveEvent()">
+      Enregistrer l'évènement
+    </button>
+  </div>
+  <div class="text-center mt-2" *ngIf="reservation">
+    <button type="submit" class="btn-danger" (click)="onDeleteEvent()">
+      Supprimer l'évènement
+    </button>
+  </div>
+</form>

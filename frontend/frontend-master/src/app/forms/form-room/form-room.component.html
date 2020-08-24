@@ -1,0 +1,42 @@
+<div class="container">
+  <form [formGroup]="roomForm" (ngOnSubmit)="onSaveRoom()">
+    <app-form-cpt-name [parentForm]="roomForm"></app-form-cpt-name>
+    <div
+      *ngIf="roomForm.controls.name.invalid && (roomForm.controls.name.dirty || roomForm.controls.name.touched)"
+      class="alert alert-danger">
+      <div
+           *ngIf="roomForm.controls.name.errors.required">
+       Un nom est nécessaire.
+      </div>
+    </div>
+    <div class="mt-2">
+      <app-form-cpt-capacity [parentForm]="roomForm"></app-form-cpt-capacity>
+      <div
+        *ngIf="roomForm.controls.capacity.invalid && (roomForm.controls.capacity.dirty || roomForm.controls.capacity.touched)"
+        class="alert alert-danger">
+        <div
+          *ngIf="roomForm.controls.capacity.errors.required">
+          Une capacité est nécessaire.
+        </div>
+        <div
+          *ngIf="roomForm.controls.capacity.errors.min">
+          La capacité minimale d'une salle est d'1 personne.
+        </div>
+        <div
+          *ngIf="roomForm.controls.capacity.errors.max">
+          La capacité maximale d'une salle est de 100 personnes.
+        </div>
+        <div
+          *ngIf="roomForm.controls.capacity.errors.pattern">
+          Seul un chiffre ou un nombre est accepté.
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 text-center">
+      <button type="submit" (click)="onSaveRoom()">
+        Enregistrer
+      </button>
+    </div>
+
+  </form>
+</div>

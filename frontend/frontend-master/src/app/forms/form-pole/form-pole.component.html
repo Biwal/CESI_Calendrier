@@ -1,0 +1,37 @@
+<div>
+  <form [formGroup]="poleForm" (ngOnSubmit)="onSavePole()">
+    <app-form-cpt-name [parentForm]="poleForm"></app-form-cpt-name>
+    <div
+      *ngIf="poleForm.controls.name.invalid && (poleForm.controls.name.dirty || poleForm.controls.name.touched)"
+      class="alert alert-danger">
+      <div
+           *ngIf="poleForm.controls.name.errors.required">
+        Un nom est nécessaire.
+      </div>
+    </div>
+    <div class="mt-3">
+      <div class="row">
+        <div class="col-8">
+          <app-form-cpt-color labelName="Couleur" inputName="color" [parentForm]="poleForm"></app-form-cpt-color>
+          <div
+            *ngIf="poleForm.controls.color.invalid && (poleForm.controls.color.dirty || poleForm.controls.color.touched)"
+            class="alert alert-danger">
+            <div
+              *ngIf="poleForm.controls.color.errors.required">
+              Une couleur est nécéssaire.
+            </div>
+            <div
+              *ngIf="poleForm.controls.color.errors.pattern">
+              Seul une couleur en hexadécimal, rgb ou rgba est accepté.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button type="submit" (click)="onSavePole()">
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

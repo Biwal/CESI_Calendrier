@@ -1,0 +1,31 @@
+<div id="owncalendar" *ngIf="resources && events">
+  <table class="oc-table">
+    <thead>
+    <tr>
+      <td *ngFor="let cellHeader of getCellHeaders()">{{ cellHeader }}</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cellRow of getCellRows(); let i = index;">
+      <td *ngFor="let td of cellRow.getTds();" [ngStyle]="{'height.px': config.rowHeight, 'width.%': 100/(2+resources.length), 'max-height': config.rowHeight}" [ngClass]="td.isHeader ? 'oc-celloneday' : null">
+        <div *ngIf="td.isHeader && !td.isHeaderDay" class="splitted">
+          <p *ngIf="i === 0" class="date-start">
+            {{ td.getTimeStart() }}
+          </p>
+          <p class="date-end">
+            {{ td.getTimeEnd() }}
+          </p>
+        </div>
+
+        <div class="event" *ngFor="let event of td.events" [ngStyle]="{'height.px': event.height, 'top.px': event.top, 'background': event.color ? event.color : '#a2a2a2', 'width.%': event.hasParent || event.hasChild ? 50 : 100, 'left.%': event.hasParent ? 50 : 0}">
+          <div class="topdiv"></div>
+          <div class="content">
+            {{ !event.private ? event.name : '' }}
+          </div>
+          <div class="bottom-div"></div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

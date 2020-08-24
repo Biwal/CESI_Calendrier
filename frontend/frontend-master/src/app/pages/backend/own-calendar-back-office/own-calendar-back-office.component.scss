@@ -1,0 +1,28 @@
+.owncalendar-btn {
+  border: none;
+  background: #222222;
+  color: lightgray;
+  display: flex;
+  justify-content: center;
+  border-radius: 2px;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+  height: 2.7rem;
+
+  &.left {
+    border-radius: 2px 0px 0px 2px;
+    width: 43px;
+    height: 43px;
+  }
+
+  &.right {
+    width: 43px;
+    height: 43px;
+    border-radius: 0px 2px 2px 0px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background: #121212;
+  }
+}

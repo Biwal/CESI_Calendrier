@@ -1,0 +1,5 @@
+<div [formGroup]="parentForm">
+  <p>Fin:</p>
+  <input [appOwnDateTime]="dt1" placeholder="Date de fin" formControlName="dateEnd"/>
+  <app-own-date-time-picker #dt1></app-own-date-time-picker>
+</div>

@@ -1,0 +1,69 @@
+<div>
+  <form [formGroup]="promotionForm" (ngOnSubmit)="onSavePromotion()">
+    <app-form-cpt-name [parentForm]="promotionForm"></app-form-cpt-name>
+    <div
+    *ngIf="promotionForm.controls.name.invalid && (promotionForm.controls.name.dirty || promotionForm.controls.name.touched)"
+    class="alert alert-danger">
+    <div
+      *ngIf="promotionForm.controls.name.errors.required">
+      Un nom est nécessaire.
+    </div>
+  </div>
+    <div class="mt-2">
+      <app-form-cpt-size [parentForm]="promotionForm"></app-form-cpt-size>
+      <div
+        *ngIf="promotionForm.controls.size.invalid && (promotionForm.controls.size.dirty || promotionForm.controls.size.touched)"
+        class="alert alert-danger">
+        <div
+          *ngIf="promotionForm.controls.size.errors.required">
+          Une capacité est obligatoire.
+        </div>
+        <div
+          *ngIf="promotionForm.controls.size.errors.min">
+          La capacité minimale d'une promotion est de 1 personnes.
+        </div>
+        <div
+          *ngIf="promotionForm.controls.size.errors.max">
+          La capacité maximale d'une promotion est de 100 personnes.
+        </div>
+        <div
+          *ngIf="promotionForm.controls.size.errors.pattern">
+          Seul un chiffre ou un nombre est accepté.
+        </div>
+      </div>
+    </div>
+    <div class="mt-2">
+      <div
+        *ngIf="promotionForm.controls.active.invalid && (promotionForm.controls.active.dirty || promotionForm.controls.active.touched)"
+        class="alert alert-danger">
+        <div formGroup="promotionForm"
+             *ngIf="promotionForm.controls.active.errors.required">
+          Le pole doit etre actif.
+        </div>
+      </div>
+    </div>
+    <div class="mt-2">
+      <app-form-cpt-active [parentForm]="promotionForm"></app-form-cpt-active>
+    </div>
+    <div class="mt-2">
+      <app-form-cpt-pole [parentForm]="promotionForm"></app-form-cpt-pole>
+      <div
+        *ngIf="promotionForm.controls.pole.invalid && (promotionForm.controls.pole.dirty || promotionForm.controls.pole.touched)"
+        class="alert alert-danger">
+        <div
+          *ngIf="promotionForm.controls.pole.errors.required">
+          Un pole est nécessaire.
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+      <app-datepicker-promotion
+        [listWeeks]="listPromoSchedules"></app-datepicker-promotion>
+    </div>
+    <div class="text-center mt-4">
+      <button type="submit" (click)="onSavePromotion()">
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

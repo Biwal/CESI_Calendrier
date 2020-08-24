@@ -1,0 +1,9 @@
+<div [formGroup]="parentForm">
+  <ng-select
+    formControlName="pole"
+    [compareWith]="compareFn">
+    <ng-option [value]="pole" *ngFor="let pole of polesList$ | async">
+      {{ pole.getName }}
+    </ng-option>
+  </ng-select>
+</div>

@@ -1,0 +1,54 @@
+@import '../../../styles';
+
+.btn {
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
+
+.dp-calendar {
+  background: #d03c60;
+  max-width: 300px;
+
+  .dp-container {
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p {
+      &.hidden {
+        color: rgba(0, 0, 0, 0.3);
+
+        &.chosen {
+          background: rgba(110, 255, 173, 0.66);
+        }
+      }
+
+      margin: 0px 0px 5px 0px;
+      &.today {
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      &.chosen {
+        background: #9affc4;
+      }
+
+      &:hover {
+        &:not(.chosen) {
+          background: rgba(255, 255, 255, 0.3);
+        }
+        cursor: pointer;
+      }
+
+      text-align: center;
+      line-height: $numberSquareWidth;
+      border-radius: 50%;
+      width: $numberSquareWidth;
+      height: $numberSquareWidth;
+    }
+  }
+}
+

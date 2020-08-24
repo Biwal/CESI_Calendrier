@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div class="m-3">
+  <app-tab></app-tab>
+</div>
+<div class="row justify-content-center mt-5">
+  <div class="col-3 d-flex flex-column justify-content-center align-items-center">
+    <app-date-picker-days-off
+      [days]="listClosureDays">
+    </app-date-picker-days-off>
+    <button class="mt-4" (click)="saveClosureDays()">Enregistrer</button>
+    <app-alert-form></app-alert-form>
+  </div>
+</div>

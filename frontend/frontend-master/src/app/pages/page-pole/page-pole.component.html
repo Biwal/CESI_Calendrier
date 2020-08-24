@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="m-3">
+  <app-tab></app-tab>
+</div>
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col-5 text-center">
+      <app-pole-list (selectPole)="onUpdateForm($event)"></app-pole-list>
+    </div>
+    <div class="col-2 text-center">
+      <app-btn-gestion-add
+        (resetForm)="onUpdateForm($event)"
+      ></app-btn-gestion-add>
+    </div>
+    <div class="col-5">
+      <app-form-pole (formSubmitted)="displaySuccessAlert($event)" (errorRaised)="displayFailAlert($event)"></app-form-pole>
+      <div class="text-center mt-2">
+        <app-btn-gestion-delete
+          (isDeleted)="displaySuccessAlert($event, 'Le pôle a été supprimé')" (errorRaised)="displayFailAlert($event)"
+        ></app-btn-gestion-delete>
+        <app-alert-form></app-alert-form>
+      </div>
+    </div>
+  </div>
+</div>

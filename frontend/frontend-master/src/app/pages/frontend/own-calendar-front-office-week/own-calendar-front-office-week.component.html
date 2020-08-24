@@ -1,0 +1,14 @@
+<img src="assets/images/logo-short.png" width="20" height="20" alt=""  routerLinkActive="active"
+     routerLink="/promopage" />
+<div class="mt-2">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+        <h5 class="m-0 mr-2 ml-2">{{ getWeekDate() }}</h5>
+    </div>
+  </div>
+  <app-own-calendar-week
+    [referentDate]="referentDate"
+    [events]="events"
+    [resources]="resources">
+  </app-own-calendar-week>
+</div>

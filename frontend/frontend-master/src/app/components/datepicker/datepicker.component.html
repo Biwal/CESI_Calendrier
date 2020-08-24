@@ -1,0 +1,14 @@
+<div class="dp-calendar p-3">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-8">
+      <div class="row justify-content-between">
+        <i class="fas fa-angle-left btn" (click)="lastMonth()"></i>
+        <p class="m-0">{{getDateName()}}</p>
+        <i class="fas fa-angle-right btn" (click)="nextMonth()"></i>
+      </div>
+    </div>
+  </div>
+  <div class="row dp-container">
+    <p *ngFor="let date of getDates()" [ngClass]="'date' + (date.chosen ? ' chosen ' : '') + (date.isToday ? ' today ' : '') + (date.isBefore || date.isAfter ? ' hidden ' : '')" (click)="choseDate(date)">{{ date.number }}</p>
+  </div>
+</div>
